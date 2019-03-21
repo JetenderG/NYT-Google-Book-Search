@@ -26,10 +26,7 @@ return(
 
 <div className="col">
 
-<button onClick={props.viewfunction}>View</button>
-<button onClick={props.Savefunction}>Delete</button>
-
-
+<button type="submit"  onClick= {props.links(props.link)} className="btn btn-success"/>
 </div>
 
 
@@ -41,7 +38,7 @@ return(
 
 <div className="col">
 
-<img alt = {props.alt} src={props.bookImg}/>
+<img alt = "book Image" src={props.bookImg}/>
 
 
 <div className="col">

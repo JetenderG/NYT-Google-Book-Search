@@ -14,7 +14,7 @@ class SearchPage extends React.Component{
 
     state={
         search : "",
-        results : ""
+        results : []
     }
 
     handleChange = event => {
@@ -24,18 +24,21 @@ class SearchPage extends React.Component{
         console.log(this.state.search)
       }
 
-      findBook = (e) =>{
+      findBook = e =>{
         e.preventDefault()
 
         console.log("HI")
         API.getSearch(this.state.search) 
         
         .then(res => {
-            console.log(res)
+            console.log(res.data.items)
             if (res.data.status === "error") {
-              throw new Error(res.data);
+              throw new Error(res.data.items.data);
             }
-            this.setState({ results: res.data });
+
+            this.setState({ results: res.data.items });
+                        console.log(this.state.results)
+
           })
           .catch(err => this.setState({ error: err.message }));
     
@@ -49,6 +52,7 @@ class SearchPage extends React.Component{
 
         
       }
+      
 
     render(){
     return(
@@ -64,15 +68,27 @@ class SearchPage extends React.Component{
 <SearchDiv>
 
 
-<ResultDivs
 
-title = {this.state.results}
-subtitle = {this.state.results}
-authors = {this.state.results}
-viewfunction = {this.SaveBook}
+
+{this.state.results.map(data =>(
+<ResultDivs
+title = {data.volumeInfo.title}
+subtitle = {data.volumeInfo.subtitle}
+authors = {data.volumeInfo.authors}
+summary={data.volumeInfo.description}
+bookImg= {data.volumeInfo.imageLinks.smallThumbnail}
+link = {data.selfLink}
+links = {this.redirect}
 Savefunction = {this.SaveBook}
 
+
 />
+
+))}
+
+
+
+
     
 </SearchDiv>
 
