@@ -9,7 +9,9 @@ module.exports = {
 
     saveArticle : function (req,res){
 
-        db.Books.create(req.body)
+        db.Books.create({savedBook})
+        .then(added => res.send(added));
+
         
 
 
@@ -17,8 +19,16 @@ module.exports = {
 
     deleteArticle: function(req ,res){
 
+        db.Books.deleteOne({})
 
 
+    },
+
+    getAll : function (req,res){
+
+        db.Books.findAll({})
+            .then(data => 
+                res.send(data))
     }
 
 

@@ -28,7 +28,12 @@ class SearchPage extends React.Component{
         e.preventDefault()
 
         console.log("HI")
-        API.getSearch(this.state.search) 
+        if (this.state.search === ""){
+          alert("Please Add a Title" )
+          
+          }  else {
+
+  API.getSearch(this.state.search) 
         
         .then(res => {
             console.log(res.data.items)
@@ -43,7 +48,11 @@ class SearchPage extends React.Component{
           .catch(err => this.setState({ error: err.message }));
     
 
-      }
+
+          }
+        }
+      
+      
 
       SaveBook = () =>{
 
@@ -53,6 +62,12 @@ class SearchPage extends React.Component{
         
       }
       
+      redirect = event =>{
+
+
+
+
+      }
 
     render(){
     return(
@@ -77,8 +92,7 @@ subtitle = {data.volumeInfo.subtitle}
 authors = {data.volumeInfo.authors}
 summary={data.volumeInfo.description}
 bookImg= {data.volumeInfo.imageLinks.smallThumbnail}
-link = {data.selfLink}
-links = {this.redirect}
+link = {data.volumeInfo.canonicalVolumeLink}
 Savefunction = {this.SaveBook}
 
 

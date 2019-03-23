@@ -1,14 +1,14 @@
-import react from "react"
+import React, { Component } from 'react';
+
+
+import {Link} from 'react-router-dom'
 
 
 
 
+function SavedResults (props){
 
-
-function ResultDivs (props){
-
-
-
+return(  
 
 <div className="container">
 
@@ -26,10 +26,9 @@ function ResultDivs (props){
 
 <div className="col">
 
-<input onClick={props.viewfunction}>View</input>
-<input onClick={props.viewfunction}>Add</input>
-
-
+<Link to={props.link}>
+      <button type="button" className="btn btn-info">Button</button>
+ </Link>
 </div>
 
 
@@ -41,7 +40,7 @@ function ResultDivs (props){
 
 <div className="col">
 
-<img src={props.bookImg}/>
+<img alt = "book Image" src={props.bookImg}/>
 
 
 <div className="col">
@@ -58,8 +57,9 @@ function ResultDivs (props){
 </div>
 
 
+)
 
 }
 
 
-export default ResultDivs;
+export default SavedResults;

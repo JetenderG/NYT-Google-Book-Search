@@ -1,8 +1,7 @@
-import React from "react"
+import React, { Component } from 'react';
 
 
-
-
+import {Link} from 'react-router-dom'
 
 
 function ResultDivs (props){
@@ -26,7 +25,9 @@ return(
 
 <div className="col">
 
-<button type="submit"  onClick= {props.links(props.link)} className="btn btn-success"/>
+<Link to={props.link}>
+      <button type="button" className="btn btn-info">Button</button>
+ </Link>
 </div>
 
 
